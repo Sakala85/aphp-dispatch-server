@@ -166,7 +166,9 @@ const getUser = () => {
   const userSorted = [];
   userSorted = users.filter((user) => user.online === 1);
   const occupedUsers = users.filter((user) => user.online === 2);
-  userSorted.push(occupedUsers);
+  occupedUsers.map((user => {
+    userSorted.push(user);
+  }))
   return userSorted;
 };
 

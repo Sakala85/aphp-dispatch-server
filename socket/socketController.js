@@ -38,6 +38,7 @@ const notificationSocket = (io, socket) => {
     });
     socket.on("consultUsers", ({}, callback) => {
       consultUsers({});
+      console.log("OK");
       callback();
     });
     socket.on("finishTask", ({ task, username }, callback) => {

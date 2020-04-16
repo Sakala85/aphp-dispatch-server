@@ -19,7 +19,11 @@ const addUser = ({ id, username }) => {
   let index = users.findIndex((user) => user.username === username);
   if (index !== -1) {
     users[index].id = id;
-    users[index].online = 1;
+    if (users[index].task !== null) {
+      users[index].online = 2;
+    } else {
+      users[index].online = 1;
+    }
     console.log(username + " is now ONLINE");
     return users[index];
   } else {

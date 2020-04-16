@@ -139,7 +139,7 @@ const reportProblem = (data) => {
       problem: data.problem,
     };
     endedTasks.push(endedTask);
-    tasks.splice(index, 1)[0];
+    tasks[index].assigned = 2
   }
   index = users.findIndex((uuser) => uuser.username === data.username);
   if (index !== -1) {

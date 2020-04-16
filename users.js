@@ -155,7 +155,7 @@ const reportProblem = (data) => {
     users[index].task = null;
     console.log("User now free for work");
   }
-  return (users[index].id)
+  return users[index].id;
 };
 
 const getTask = () => {
@@ -166,9 +166,9 @@ const getUser = () => {
   const userSorted = [];
   userSorted = users.filter((user) => user.online === 1);
   const occupedUsers = users.filter((user) => user.online === 2);
-  occupedUsers.map((user => {
-    userSorted.push(user);
-  }))
+  occupedUsers.map((user) => {
+    return userSorted.push(user);
+  });
   return userSorted;
 };
 
@@ -185,5 +185,5 @@ module.exports = {
   getTaskByID,
   unassignTask,
   deleteTask,
-  reportProblem
+  reportProblem,
 };

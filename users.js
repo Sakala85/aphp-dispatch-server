@@ -1,6 +1,7 @@
 const uuid = require("node-uuid");
 const users = [];
 const tasks = [];
+const endedTasks = [];
 
 const consultUsers = ({}) => {
   console.log("USERS : ");
@@ -114,8 +115,31 @@ const unassignTask = ({ task }) => {
 const validTask = (data) => {
   let index = tasks.findIndex((ttask) => ttask.task === data.task);
   if (index !== -1) {
-    tasks.splice(index, 1)[0]
-    // tasks[index].assigned = 2;
+    endedTask = {
+      task: tasks[index],
+      problem: null
+    }
+    endedTasks.push(endedTask);
+    tasks.splice(index, 1)[0];
+    console.log("task Validate");
+  }
+  index = users.findIndex((uuser) => uuser.username === data.username);
+  if (index !== -1) {
+    users[index].online = 1;
+    users[index].task = null;
+    console.log("User now free for work");
+  }
+};
+
+const problemTask = (data) => {
+  let index = tasks.findIndex((ttask) => ttask.task === data.task);
+  if (index !== -1) {
+    endedTask = {
+      task: tasks[index],
+      problem: data.problem
+    }
+    endedTasks.push(endedTask);
+    tasks.splice(index, 1)[0];
     console.log("task Validate");
   }
   index = users.findIndex((uuser) => uuser.username === data.username);
@@ -147,5 +171,6 @@ module.exports = {
   getUser,
   validTask,
   getTaskByID,
-  unassignTask
+  unassignTask,
+  problemTask
 };

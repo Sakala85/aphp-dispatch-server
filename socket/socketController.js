@@ -57,7 +57,7 @@ const notificationSocket = (io, socket) => {
       callback();
     });
     socket.on("reportProblem", ({ task, problem }, callback) => {
-      reportProblem({ task: task, problem: problem });
+      reportProblem({ task: task, problem: problem, username: username });
       io.to(data.userId).emit("sendTask", null);
       const taskList = getTask();
       const userList = getUser();
@@ -72,14 +72,6 @@ const notificationSocket = (io, socket) => {
     });
     socket.on("finishTask", ({ task, username }, callback) => {
       validTask({ username: username, task: task });
-      const taskList = getTask();
-      const userList = getUser();
-      io.emit("getTask", { task: taskList });
-      io.emit("getUser", { user: userList });
-      callback();
-    });
-    socket.on("reportProblem", ({ task, username, problem }, callback) => {
-      problemTask({ username: username, task: task });
       const taskList = getTask();
       const userList = getUser();
       io.emit("getTask", { task: taskList });

@@ -140,9 +140,8 @@ const reportProblem = (data) => {
     };
     endedTasks.push(endedTask);
     tasks.splice(index, 1)[0];
-    const username = tasks[index].username;
   }
-  index = users.findIndex((uuser) => uuser.username === username);
+  index = users.findIndex((uuser) => uuser.username === data.username);
   if (index !== -1) {
     users[index].online = 1;
     users[index].task = null;

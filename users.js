@@ -112,6 +112,13 @@ const unassignTask = ({ task }) => {
   return data;
 };
 
+const deleteTask = ({ task }) => {
+  let index = tasks.findIndex((ttask) => ttask.task === task);
+  if (index !== -1) {
+    tasks.splice(index, 1)[0];
+  }
+};
+
 const validTask = (data) => {
   let index = tasks.findIndex((ttask) => ttask.task === data.task);
   if (index !== -1) {
@@ -171,5 +178,6 @@ module.exports = {
   validTask,
   getTaskByID,
   unassignTask,
+  deleteTask,
   reportProblem
 };

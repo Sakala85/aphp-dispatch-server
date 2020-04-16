@@ -40,7 +40,7 @@ const getTaskByID = ({ task_id }) => {
   if (index !== -1) {
     return tasks[index].task;
   }
-}
+};
 
 const removeUser = (id) => {
   let index = users.findIndex((user) => user.id === id);
@@ -104,7 +104,7 @@ const unassignTask = ({ task }) => {
   index = users.findIndex((user) => user.task === taskName);
   if (index !== -1) {
     users[index].task = null;
-    if (users[index].online === 2){
+    if (users[index].online === 2) {
       users[index].online = 1;
     }
     data.userId = users[index].id;
@@ -117,8 +117,8 @@ const validTask = (data) => {
   if (index !== -1) {
     endedTask = {
       task: tasks[index],
-      problem: null
-    }
+      problem: null,
+    };
     endedTasks.push(endedTask);
     tasks.splice(index, 1)[0];
     console.log("task Validate");
@@ -136,13 +136,13 @@ const reportProblem = (data) => {
   if (index !== -1) {
     endedTask = {
       task: tasks[index],
-      problem: data.problem
-    }
+      problem: data.problem,
+    };
     endedTasks.push(endedTask);
     tasks.splice(index, 1)[0];
-    console.log("task Validate");
+    const username = tasks[index].username;
   }
-  index = users.findIndex((uuser) => uuser.username === data.username);
+  index = users.findIndex((uuser) => uuser.username === username);
   if (index !== -1) {
     users[index].online = 1;
     users[index].task = null;
@@ -158,8 +158,6 @@ const getUser = () => {
   return users;
 };
 
-const getUsersInRoom = (room) => users.filter((user) => user.room === room);
-
 module.exports = {
   addUser,
   setUserOffline,
@@ -172,5 +170,5 @@ module.exports = {
   validTask,
   getTaskByID,
   unassignTask,
-  reportProblem
+  reportProblem,
 };

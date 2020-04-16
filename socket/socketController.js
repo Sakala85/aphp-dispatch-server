@@ -2,7 +2,7 @@ const {
   addUser,
   setUserOffline,
   consultUsers,
-  removeUser,
+  getTaskByID,
   addTask,
   getTask,
   assignTask,
@@ -18,8 +18,9 @@ const notificationSocket = (io, socket) => {
       const userId = addUser({ id: socket.id, username });
       const taskList = getTask();
       const userList = getUser();
-      if (userId.task){
-        io.to(userId.id).emit("sendTask", userId.task);
+      if (userId.task) {
+        const taskItem = getTaskByID(userId.task);
+        io.to(userId.id).emit("sendTask", taskItem);
       }
       io.emit("getTask", { task: taskList, user: userList });
       io.emit("getUser", { user: userList, task: taskList });

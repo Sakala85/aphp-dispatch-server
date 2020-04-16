@@ -34,6 +34,13 @@ const addUser = ({ id, username }) => {
   }
 };
 
+const getTaskByID = ({ task_id }) => {
+  let index = tasks.findIndex((ttask) => ttask.id === task_id);
+  if (index !== -1) {
+    return tasks[index].task;
+  }
+}
+
 const removeUser = (id) => {
   let index = users.findIndex((user) => user.id === id);
   if (index !== -1) {
@@ -110,4 +117,5 @@ module.exports = {
   assignTask,
   getUser,
   validTask,
+  getTaskByID
 };

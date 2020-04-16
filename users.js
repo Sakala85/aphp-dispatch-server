@@ -167,7 +167,8 @@ const getTask = () => {
 const getUser = () => {
   const userSorted1 = users.filter((user) => user.online === 1);
   const userSorted2 = userSorted1.concat(users.filter((user) => user.online === 2));
-  const userSorted = userSorted2.concat(users.filter((user) => user.online === 0));
+  const userSorted3 = userSorted2.concat(users.filter((user) => user.online === 0));
+  const userSorted = userSorted3.concat(users.filter((user) => user.username !== "dispatch"));
   return userSorted;
 };
 

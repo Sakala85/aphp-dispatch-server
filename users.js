@@ -73,9 +73,10 @@ const assignTask = ({ username, task }) => {
   } else {
     return { message: "Task doesn't exist anymore." };
   }
+  const taskName = tasks[index].task;
   index = users.findIndex((user) => user.username === username);
   if (index !== -1) {
-    users[index].task = task;
+    users[index].task = taskName;
     users[index].online = 2;
     data.userId = users[index].id;
   } else {
@@ -93,6 +94,7 @@ const validTask = (data) => {
   index = users.findIndex((uuser) => uuser.username === data.username);
   if (index !== -1) {
     users[index].online = 1;
+    users[index].task = null;
     console.log("User now free for work");
   }
 };

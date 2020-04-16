@@ -8,7 +8,6 @@ const {
   assignTask,
   getUser,
   validTask,
-  setUserOfflineById
 } = require("../users");
 
 const notificationSocket = (io, socket) => {
@@ -59,7 +58,7 @@ const notificationSocket = (io, socket) => {
     });
     //Disconnect and Delete an USER
     socket.on("disconnect", ({ username }) => {
-      setUserOfflineById({ username });
+      setUserOffline({ username });
       const userList = getUser();
       io.emit("getUser", { user: userList });
     });

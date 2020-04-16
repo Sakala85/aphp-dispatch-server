@@ -9,7 +9,6 @@ const {
   getUser,
   validTask,
   unassignTask,
-  problemTask,
   reportProblem
 } = require("../users");
 
@@ -56,7 +55,7 @@ const notificationSocket = (io, socket) => {
       io.emit("getUser", { user: userList });
       callback();
     });
-    socket.on("reportProblem", ({ task, problem }, callback) => {
+    socket.on("reportProblem", ({ task, problem, username }, callback) => {
       reportProblem({ task: task, problem: problem, username: username });
       io.to(data.userId).emit("sendTask", null);
       const taskList = getTask();

@@ -169,5 +169,5 @@ module.exports = {
   validTask,
   getTaskByID,
   unassignTask,
-  reportProblem,
+  reportProblem
 };

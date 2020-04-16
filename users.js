@@ -147,6 +147,7 @@ const reportProblem = (data) => {
     users[index].task = null;
     console.log("User now free for work");
   }
+  return (users[index].id)
 };
 
 const getTask = () => {

@@ -114,7 +114,8 @@ const unassignTask = ({ task }) => {
 const validTask = (data) => {
   let index = tasks.findIndex((ttask) => ttask.task === data.task);
   if (index !== -1) {
-    tasks[index].assigned = 2;
+    tasks.splice(index, 1)[0]
+    // tasks[index].assigned = 2;
     console.log("task Validate");
   }
   index = users.findIndex((uuser) => uuser.username === data.username);

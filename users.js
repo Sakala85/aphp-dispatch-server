@@ -159,6 +159,7 @@ const reportProblem = (data) => {
 };
 
 const getTask = () => {
+  console.log("ok");
   return tasks;
 };
 

@@ -57,7 +57,7 @@ const addTask = ({ task }) => {
   } else {
     const id_task = uuid.v1();
 
-    const tmpTask = { id: id_task, task: task, assigned: 0, username: null };
+    const tmpTask = { id: id_task, task: task, assigned: 0, username: null, problem: null };
     tasks.push(tmpTask);
   }
 };
@@ -148,6 +148,7 @@ const reportProblem = (data) => {
     endedTasks.push(endedTask);
     tasks[index].assigned = 2;
     tasks[index].username = null;
+    tasks[index].problem = data.problem;
   }
   index = users.findIndex((uuser) => uuser.username === data.username);
   if (index !== -1) {

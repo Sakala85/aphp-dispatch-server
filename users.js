@@ -87,8 +87,13 @@ const assignTask = ({ username, task }) => {
 
 const unassignTask = ({ task }) => {
   let index = tasks.findIndex((ttask) => ttask.id === task);
+  let data = {
+    task: "",
+    userId: "",
+  };
   if (index !== -1) {
     tasks[index].assigned = 0;
+    data.task = null;
   } else {
     return { message: "Task doesn't exist anymore." };
   }
@@ -99,7 +104,9 @@ const unassignTask = ({ task }) => {
     if (users[index].online === 2){
       users[index].online = 1;
     }
+    data.userId = users[index].id;
   }
+  return data;
 };
 
 const validTask = (data) => {

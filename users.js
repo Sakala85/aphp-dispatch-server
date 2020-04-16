@@ -163,10 +163,9 @@ const getTask = () => {
 };
 
 const getUser = () => {
-  let userSorted = [];
-  userSorted = userSorted.push(users.filter((user) => user.online === 1));
-  userSorted = userSorted.push(users.filter((user) => user.online === 2));
-  userSorted = userSorted.push(users.filter((user) => user.online === 0));
+  const userSorted = users.filter((user) => user.online === 1);
+  userSorted.push(users.filter((user) => user.online === 2));
+  userSorted.push(users.filter((user) => user.online === 0));
   return userSorted;
 };
 

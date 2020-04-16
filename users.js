@@ -162,16 +162,15 @@ const getTask = () => {
   return tasks;
 };
 
-// const getUser = () => {
-//   const userSorted = [];
-//   userSorted = users.filter((user) => user.online === 1);
-//   const occupedUsers = users.filter((user) => user.online === 2);
-//   // occupedUsers.map((user) => {
-//   //   return userSorted.push(user);
-//   // });
-//   return occupedUsers;
-// };
-const getUser = () => users.filter((user) => user.online === 1);
+const getUser = () => {
+  const userSorted = [];
+  userSorted = users.filter((user) => user.online === 1);
+  // const occupedUsers = users.filter((user) => user.online === 2);
+  // occupedUsers.map((user) => {
+  //   return userSorted.push(user);
+  // });
+  return occupedUsers;
+};
 
 module.exports = {
   addUser,

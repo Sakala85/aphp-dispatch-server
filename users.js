@@ -131,7 +131,7 @@ const validTask = (data) => {
   }
 };
 
-const problemTask = (data) => {
+const reportProblem = (data) => {
   let index = tasks.findIndex((ttask) => ttask.task === data.task);
   if (index !== -1) {
     endedTask = {
@@ -172,5 +172,5 @@ module.exports = {
   validTask,
   getTaskByID,
   unassignTask,
-  problemTask
+  reportProblem
 };

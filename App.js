@@ -12,5 +12,5 @@ const io = socketio(server);
 socketControl.notificationSocket(io);
 
 server.listen(process.env.PORT || 5000, () =>
-  console.log(`Server has started.`)
+<h1>Server is Up and running</h1>
 );

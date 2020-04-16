@@ -8,6 +8,7 @@ const {
   assignTask,
   getUser,
   validTask,
+  unassignTask
 } = require("../users");
 
 const notificationSocket = (io, socket) => {
@@ -16,14 +17,12 @@ const notificationSocket = (io, socket) => {
     socket.on("connectNew", ({ username }, callback) => {
       socket.join("onlineUsers");
       const userId = addUser({ id: socket.id, username });
-      const taskList = getTask();
       const userList = getUser();
       if (userId.task) {
         const taskItem = getTaskByID(userId.task);
         io.to(userId.id).emit("sendTask", taskItem);
       }
-      io.emit("getTask", { task: taskList, user: userList });
-      io.emit("getUser", { user: userList, task: taskList });
+      io.emit("getUser", { user: userList });
       callback(userId);
     });
     // Disconnect an User for a While
@@ -36,6 +35,13 @@ const notificationSocket = (io, socket) => {
     socket.on("assignTask", ({ user, task_id }, callback) => {
       let data = assignTask({ username: user, task: task_id });
       io.to(data.userId).emit("sendTask", data.task);
+      const userList = getUser();
+      io.emit("getUser", { user: userList });
+      callback();
+    });
+    socket.on("unassignTask", ({ task }, callback) => {
+      let data = unassignTask({ task: task });
+      io.to(data.userId).emit("sendTask", null);
       const userList = getUser();
       io.emit("getUser", { user: userList });
       callback();

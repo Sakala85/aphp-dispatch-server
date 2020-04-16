@@ -85,6 +85,23 @@ const assignTask = ({ username, task }) => {
   return data;
 };
 
+const unassignTask = ({ task }) => {
+  let index = tasks.findIndex((ttask) => ttask.id === task);
+  if (index !== -1) {
+    tasks[index].assigned = 0;
+  } else {
+    return { message: "Task doesn't exist anymore." };
+  }
+  const taskName = tasks[index].task;
+  index = users.findIndex((user) => user.task === taskName);
+  if (index !== -1) {
+    users[index].task = null;
+    if (users[index].online === 2){
+      users[index].online = 1;
+    }
+  }
+};
+
 const validTask = (data) => {
   let index = tasks.findIndex((ttask) => ttask.task === data.task);
   if (index !== -1) {
@@ -119,5 +136,6 @@ module.exports = {
   assignTask,
   getUser,
   validTask,
-  getTaskByID
+  getTaskByID,
+  unassignTask
 };

@@ -7,7 +7,8 @@ const {
   getTask,
   assignTask,
   getUser,
-  validTask
+  validTask,
+  setUserOfflineById
 } = require("../users");
 
 const notificationSocket = (io, socket) => {
@@ -56,28 +57,11 @@ const notificationSocket = (io, socket) => {
       io.emit("getTask", { task: taskList });
       io.emit("getUser", { user: userList });
     });
-    
-    //   socket.on(
-    //     "notifReceiver",
-    //     ({ id_user1, id_user2, type, username }, callback) => {
-    //       const user = getUserBack(id_user2);
-    //       if (!user) {
-    //         console.log(
-    //           "This user is not online so we can't send the notification"
-    //         );
-    //       } else {
-    //         io.to(`${user.id}`).emit("notifPusher", {
-    //           id_user1: id_user1,
-    //           username: username,
-    //           type: type,
-    //         });
-    //       }
-
-    //       callback();
-    //     }
-    //   );
     //Disconnect and Delete an USER
-    socket.on("disconnect", () => {
+    socket.on("disconnect", ({ username }) => {
+      setUserOfflineById({ username });
+      const userList = getUser();
+      io.emit("getUser", { user: userList });
     });
   });
 };

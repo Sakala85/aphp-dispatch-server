@@ -56,7 +56,7 @@ const addTask = ({ task }) => {
   } else {
     const id_task = uuid.v1();
 
-    const tmpTask = { id: id_task, task: task, assigned: 0 };
+    const tmpTask = { id: id_task, task: task, assigned: 0, username: null };
     tasks.push(tmpTask);
   }
 };
@@ -69,6 +69,7 @@ const assignTask = ({ username, task }) => {
   };
   if (index !== -1) {
     tasks[index].assigned = 1;
+    tasks[index].username = username;
     data.task = tasks[index].task;
   } else {
     return { message: "Task doesn't exist anymore." };
@@ -92,6 +93,7 @@ const unassignTask = ({ task }) => {
     userId: "",
   };
   if (index !== -1) {
+    tasks[index].username = null;
     tasks[index].assigned = 0;
     data.task = null;
   } else {

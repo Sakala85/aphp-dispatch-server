@@ -17,11 +17,13 @@ const notificationSocket = (io, socket) => {
     socket.on("connectNew", ({ username }, callback) => {
       socket.join("onlineUsers");
       const userId = addUser({ id: socket.id, username });
-      const userList = getUser();
       if (userId.task) {
         const taskItem = getTaskByID(userId.task);
         io.to(userId.id).emit("sendTask", taskItem);
       }
+      const taskList = getTask();
+      const userList = getUser();
+      io.emit("getTask", { task: taskList });
       io.emit("getUser", { user: userList });
       callback(userId);
     });

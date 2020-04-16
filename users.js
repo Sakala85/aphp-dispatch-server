@@ -163,7 +163,11 @@ const getTask = () => {
 };
 
 const getUser = () => {
-  return users;
+  const userSorted = [];
+  userSorted = users.filter((user) => user.online === 1);
+  const occupedUsers = users.filter((user) => user.online === 2);
+  userSorted.push(occupedUsers);
+  return userSorted;
 };
 
 module.exports = {

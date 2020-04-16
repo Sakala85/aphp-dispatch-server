@@ -170,7 +170,7 @@ const getUser = () => {
   // occupedUsers.map((user) => {
   //   return userSorted.push(user);
   // });
-  return occupedUsers;
+  return userSorted;
 };
 
 module.exports = {

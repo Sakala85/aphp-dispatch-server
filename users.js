@@ -86,7 +86,7 @@ const assignTask = ({ username, task }) => {
 };
 
 const unassignTask = ({ task }) => {
-  let index = tasks.findIndex((ttask) => ttask.id === task);
+  let index = tasks.findIndex((ttask) => ttask.task === task);
   let data = {
     task: "",
     userId: "",

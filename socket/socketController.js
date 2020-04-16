@@ -43,7 +43,9 @@ const notificationSocket = (io, socket) => {
     });
     socket.on("unassignTask", ({ task }, callback) => {
       let data = unassignTask({ task: task });
-      io.to(data.userId).emit("sendTask", null);
+      if (data) {
+        io.to(data.userId).emit("sendTask", null);
+      }
       const userList = getUser();
       io.emit("getUser", { user: userList });
       callback();
